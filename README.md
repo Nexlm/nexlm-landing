@@ -54,7 +54,34 @@ src/
   pages/        Route pages, including legal drafts
 ```
 
-Content lives in `src/data/` so copy changes don't require touching components.
+Content lives in `src/data/` so copy changes don't require touching components. See [CONTRIBUTING.md](CONTRIBUTING.md) for how to add guides, FAQs and glossary terms.
+
+## Pages
+
+| Route                      | Page                                              |
+| -------------------------- | ------------------------------------------------- |
+| `/`                        | Home                                              |
+| `/how-it-works`            | Buy and sell steps, trade states, escrow diagram  |
+| `/security`                | Escrow design, safety tips, scam reporting        |
+| `/fees`                    | Fee table and worked example                      |
+| `/payment-methods`         | Supported Naira rails with per-method tips        |
+| `/guides`, `/guides/:slug` | Searchable guides with table of contents          |
+| `/glossary`                | Searchable glossary                               |
+| `/faq`                     | Categorised FAQ with structured data              |
+| `/changelog`               | What's new                                        |
+| `/about`, `/contact`       | Company and support channels                      |
+| `/legal/*`                 | Terms, privacy and risk disclosure (drafts)       |
+
+## SEO
+
+- Per-route title, description, canonical URL and Open Graph tags via `useDocumentTitle`
+- JSON-LD for the organisation, FAQ page, guide articles and breadcrumbs
+- `public/sitemap.xml` is generated from routes and guides by `scripts/generate-sitemap.mjs` before every build
+
+## Live data
+
+- **XLM/NGN rate** — CoinGecko simple-price API, cached five minutes in `sessionStorage`. Indicative only.
+- **Network pulse** — latest ledgers from Stellar's public Horizon, refreshed every 15 seconds.
 
 ## Live rate
 
