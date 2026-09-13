@@ -8,7 +8,7 @@ import { Button } from '../ui/Button.jsx';
 const PRESETS = [50, 100, 500, 1000];
 
 export function RateCalculator() {
-  const { rate: market } = useXlmRate();
+  const { rate: market, error: marketError } = useXlmRate();
   const [direction, setDirection] = useState('xlm-to-ngn');
   const [amount, setAmount] = useState('100');
   const [rate, setRate] = useState('');
@@ -78,10 +78,17 @@ export function RateCalculator() {
       {market && (
         <p className="mt-1.5 text-xs text-slate-500">
           Market reference: {formatNgn(market.ngn)}.{' '}
-          <button type="button" className="font-medium text-brand-600 hover:underline" onClick={() => setRate(String(market.ngn))}>
+          <button
+            type="button"
+            className="font-medium text-brand-600 hover:underline"
+            onClick={() => setRate(String(Math.round(market.ngn * 100) / 100))}
+          >
             Use it
           </button>
         </p>
+      )}
+      {marketError && !market && (
+        <p className="mt-1.5 text-xs text-slate-500">Market reference is unavailable right now — enter the rate you have in mind.</p>
       )}
 
       <div className="mt-6 rounded-2xl bg-slate-50 p-5">
