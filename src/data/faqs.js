@@ -43,7 +43,7 @@ export const faqCategories = [
       {
         question: 'What if the seller doesn’t release my XLM?',
         answer:
-          'The XLM stays locked in escrow — the seller cannot take it back once you have marked the trade as paid. Share your receipt in the chat; our dispute process lets an admin review the evidence and release the XLM to you.',
+          'The XLM stays locked in escrow — it can’t be refunded to the seller automatically once you have marked the trade as paid. Share your receipt in the chat and contact support with your trade ID. An in-app dispute process, where an admin reviews the evidence and settles the escrow, is coming in Phase 2.',
       },
       {
         question: 'Can I cancel a trade?',
