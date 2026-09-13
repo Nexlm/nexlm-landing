@@ -56,6 +56,28 @@
   }
 }
 
+@media print {
+  header,
+  footer,
+  [aria-label='Back to top'] {
+    display: none !important;
+  }
+
+  body {
+    overflow: visible;
+  }
+
+  section {
+    background: #fff !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  h1 {
+    color: #0f172a !important;
+  }
+}
+
 @layer utilities {
   .bg-grid {
     background-image:
