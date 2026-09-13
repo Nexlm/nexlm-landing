@@ -32,10 +32,29 @@ function AccordionItem({ item, open, onToggle }) {
   );
 }
 
+/** Arrow/Home/End keys move focus between accordion triggers (WAI-ARIA pattern). */
+function handleKeyDown(event) {
+  const triggers = [...event.currentTarget.querySelectorAll('button[aria-expanded]')];
+  const index = triggers.indexOf(document.activeElement);
+  if (index === -1) return;
+
+  const next = {
+    ArrowDown: (index + 1) % triggers.length,
+    ArrowUp: (index - 1 + triggers.length) % triggers.length,
+    Home: 0,
+    End: triggers.length - 1,
+  }[event.key];
+
+  if (next !== undefined) {
+    event.preventDefault();
+    triggers[next].focus();
+  }
+}
+
 export function Accordion({ items, defaultOpen = 0 }) {
   const [openIndex, setOpenIndex] = useState(defaultOpen);
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white px-6">
+    <div className="rounded-2xl border border-slate-200 bg-white px-6" onKeyDown={handleKeyDown}>
       {items.map((item, i) => (
         <AccordionItem
           key={item.question}
