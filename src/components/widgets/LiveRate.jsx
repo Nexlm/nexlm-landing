@@ -17,7 +17,10 @@ export function LiveRate({ className }) {
   const Trend = up ? TrendingUp : TrendingDown;
 
   return (
-    <span className={cn('inline-flex items-center gap-2 text-sm', className)} title="Indicative market rate from CoinGecko">
+    <span
+      className={cn('inline-flex items-center gap-2 text-sm', className)}
+      title={`Indicative market rate from CoinGecko, updated ${new Date(rate.fetchedAt).toLocaleTimeString('en-NG', { hour: '2-digit', minute: '2-digit' })}`}
+    >
       <span className="relative flex h-2 w-2">
         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-naira-400 opacity-75" />
         <span className="relative inline-flex h-2 w-2 rounded-full bg-naira-500" />
