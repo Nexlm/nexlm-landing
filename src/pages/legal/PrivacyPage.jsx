@@ -32,6 +32,17 @@ export default function PrivacyPage() {
         share identity data with our KYC provider for verification and with authorities only where the law requires.
       </p>
 
+      <h2>This website</h2>
+      <p>
+        The Nexlm marketing site does not use advertising or tracking cookies. It stores two small items in your browser: a five-minute cache of the
+        XLM market rate (session storage) and whether you dismissed the announcement bar (local storage).
+      </p>
+      <p>
+        To show live data, your browser requests the XLM price from CoinGecko and recent ledger data from Stellar&apos;s public Horizon API. Those
+        services receive your IP address as part of a normal web request. Fonts are loaded from Google Fonts.
+      </p>
+      <p>If you join the waitlist, we use your email address only to send your invite and product updates you can unsubscribe from.</p>
+
       <h2>Your rights</h2>
       <p>
         Under the Nigeria Data Protection Act you can request access to, correction of, or deletion of your personal data, subject to record-keeping
