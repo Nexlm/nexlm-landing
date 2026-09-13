@@ -4,6 +4,7 @@ import { CtaSection } from '../components/sections/CtaSection.jsx';
 import { EscrowSection } from '../components/sections/EscrowSection.jsx';
 import { FaqSection } from '../components/sections/FaqSection.jsx';
 import { Features } from '../components/sections/Features.jsx';
+import { GuidesPreview } from '../components/sections/GuidesPreview.jsx';
 import { Hero } from '../components/sections/Hero.jsx';
 import { HowItWorks } from '../components/sections/HowItWorks.jsx';
 import { PaymentMethodsStrip } from '../components/sections/PaymentMethodsStrip.jsx';
@@ -27,6 +28,7 @@ export default function HomePage() {
       <UseCases />
       <Comparison />
       <RoadmapSection />
+      <GuidesPreview />
       <FaqSection />
       <CtaSection />
     </>
