@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { comparisonColumns, comparisonRows } from './comparison.js';
 import { faqCategories, topFaqs } from './faqs.js';
+import { getGuide } from './guides/index.js';
 import { footerNav, mainNav } from './navigation.js';
 import { roadmap } from './roadmap.js';
 
@@ -12,6 +13,12 @@ describe('site content', () => {
       for (const item of category.items) expect(item.answer.length).toBeGreaterThan(40);
     }
     expect(topFaqs.every(Boolean)).toBe(true);
+  });
+
+  it('links FAQs only to guides that exist', () => {
+    const linked = faqCategories.flatMap((c) => c.items).filter((i) => i.guide);
+    expect(linked.length).toBeGreaterThan(0);
+    for (const item of linked) expect(getGuide(item.guide), item.guide).not.toBeNull();
   });
 
   it('keeps comparison rows aligned with columns', () => {

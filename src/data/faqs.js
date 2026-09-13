@@ -31,6 +31,7 @@ export const faqCategories = [
     items: [
       {
         question: 'How long do I have to pay?',
+        guide: 'payment-window-and-auto-refunds',
         answer:
           'Buyers have 15 minutes from the moment escrow is locked to send Naira and tap “I have paid”. If the window closes without payment, the XLM is returned to the seller automatically.',
       },
@@ -61,6 +62,7 @@ export const faqCategories = [
     items: [
       {
         question: 'Do I need a memo to deposit XLM?',
+        guide: 'depositing-xlm-from-an-exchange',
         answer:
           'No. Your Nexlm wallet is a personal Stellar address, so deposits arrive without a memo. Just make sure the sending platform uses the Stellar network.',
       },
@@ -71,11 +73,13 @@ export const faqCategories = [
       },
       {
         question: 'Why can’t I withdraw my whole balance?',
+        guide: 'understanding-stellar-reserves',
         answer:
           'Stellar requires every account to keep a small minimum balance, and XLM committed to your active sell orders is held back. Cancel an order to free those funds.',
       },
       {
         question: 'What if I withdraw to an exchange without a memo?',
+        guide: 'withdrawing-xlm-safely',
         answer:
           'Exchanges that share one address between customers rely on the memo to credit you. Always copy the memo from the exchange’s deposit page; if you forgot it, contact the exchange with the transaction hash.',
       },
@@ -91,6 +95,7 @@ export const faqCategories = [
       },
       {
         question: 'My verification failed. What now?',
+        guide: 'bvn-vs-nin-verification',
         answer:
           'Enter your names and date of birth exactly as they appear on your BVN or NIN record, or try the other ID type. If your ID is reported as already in use, contact support.',
       },
@@ -126,6 +131,7 @@ export const faqCategories = [
       },
       {
         question: 'How do I avoid scams?',
+        guide: 'spot-fake-payment-alerts',
         answer:
           'Only release XLM after the money is in your account (not on a screenshot), keep all communication inside the trade chat, pay from an account in your own name, and never share passwords or OTPs.',
       },
