@@ -9,6 +9,11 @@ const FeesPage = lazy(() => import('./pages/FeesPage.jsx'));
 const FaqPage = lazy(() => import('./pages/FaqPage.jsx'));
 const AboutPage = lazy(() => import('./pages/AboutPage.jsx'));
 const ContactPage = lazy(() => import('./pages/ContactPage.jsx'));
+const GuidesPage = lazy(() => import('./pages/GuidesPage.jsx'));
+const GuidePage = lazy(() => import('./pages/GuidePage.jsx'));
+const GlossaryPage = lazy(() => import('./pages/GlossaryPage.jsx'));
+const ChangelogPage = lazy(() => import('./pages/ChangelogPage.jsx'));
+const PaymentMethodsPage = lazy(() => import('./pages/PaymentMethodsPage.jsx'));
 const TermsPage = lazy(() => import('./pages/legal/TermsPage.jsx'));
 const PrivacyPage = lazy(() => import('./pages/legal/PrivacyPage.jsx'));
 const RiskPage = lazy(() => import('./pages/legal/RiskPage.jsx'));
@@ -26,6 +31,11 @@ export default function App() {
           <Route path="faq" element={<FaqPage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="contact" element={<ContactPage />} />
+          <Route path="guides" element={<GuidesPage />} />
+          <Route path="guides/:slug" element={<GuidePage />} />
+          <Route path="glossary" element={<GlossaryPage />} />
+          <Route path="changelog" element={<ChangelogPage />} />
+          <Route path="payment-methods" element={<PaymentMethodsPage />} />
           <Route path="legal/terms" element={<TermsPage />} />
           <Route path="legal/privacy" element={<PrivacyPage />} />
           <Route path="legal/risk" element={<RiskPage />} />
