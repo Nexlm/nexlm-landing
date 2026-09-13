@@ -14,6 +14,14 @@ export function Footer() {
           <p className="mt-4 max-w-xs text-sm leading-relaxed">
             Peer-to-peer XLM ↔ Naira trading for Nigeria, secured by on-chain Stellar escrow.
           </p>
+          <div className="mt-5 flex gap-4 text-sm">
+            <a href={site.appUrl} className="font-medium text-white hover:text-brand-300">
+              Open the app →
+            </a>
+            <a href={site.docsUrl} target="_blank" rel="noreferrer" className="hover:text-white">
+              Documentation
+            </a>
+          </div>
           <div className="mt-6 flex gap-3">
             <a href={site.githubUrl} target="_blank" rel="noreferrer" className="rounded-full border border-white/10 p-2 hover:text-white" aria-label="Nexlm on GitHub">
               <Github className="h-4 w-4" />
