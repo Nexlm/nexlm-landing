@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { PageHero } from '../components/layout/PageHero.jsx';
+import { StructuredData } from '../components/seo/StructuredData.jsx';
+import { faqSchema } from '../lib/structuredData.js';
 import { Accordion } from '../components/ui/Accordion.jsx';
 import { Container } from '../components/ui/Container.jsx';
 import { faqCategories } from '../data/faqs.js';
@@ -10,6 +12,7 @@ export default function FaqPage() {
 
   return (
     <>
+      <StructuredData data={faqSchema(faqCategories.flatMap((c) => c.items))} />
       <PageHero eyebrow="FAQ" title="Frequently asked questions" description="Can't find what you need? Email us and a human will reply." />
       <section className="bg-slate-50 py-20">
         <Container className="grid gap-12 lg:grid-cols-4">

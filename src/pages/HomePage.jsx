@@ -9,12 +9,15 @@ import { HowItWorks } from '../components/sections/HowItWorks.jsx';
 import { PaymentMethodsStrip } from '../components/sections/PaymentMethodsStrip.jsx';
 import { RoadmapSection } from '../components/sections/RoadmapSection.jsx';
 import { UseCases } from '../components/sections/UseCases.jsx';
+import { StructuredData } from '../components/seo/StructuredData.jsx';
 import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
+import { organizationSchema } from '../lib/structuredData.js';
 
 export default function HomePage() {
   useDocumentTitle();
   return (
     <>
+      <StructuredData data={organizationSchema()} />
       <Hero />
       <PaymentMethodsStrip />
       <HowItWorks />
