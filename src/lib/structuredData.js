@@ -26,6 +26,19 @@ export function faqSchema(items) {
   };
 }
 
+export function articleSchema(guide) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: guide.title,
+    description: guide.summary,
+    dateModified: guide.updated,
+    mainEntityOfPage: new URL(`/guides/${guide.slug}`, site.url).toString(),
+    author: { '@type': 'Organization', name: site.name },
+    publisher: { '@type': 'Organization', name: site.name, logo: { '@type': 'ImageObject', url: `${site.url}/favicon.svg` } },
+  };
+}
+
 export function breadcrumbSchema(trail) {
   return {
     '@context': 'https://schema.org',
