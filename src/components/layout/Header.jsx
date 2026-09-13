@@ -1,7 +1,7 @@
 import { Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { appLinks } from '../../config/site.js';
+import { appLinks, site } from '../../config/site.js';
 import { mainNav } from '../../data/navigation.js';
 import { cn } from '../../lib/cn.js';
 import { Button } from '../ui/Button.jsx';
@@ -61,6 +61,9 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-2 lg:flex">
+          <Button href={site.docsUrl} variant="ghost" size="sm">
+            Docs
+          </Button>
           <Button href={appLinks.login} variant="ghost" size="sm">
             Log in
           </Button>
