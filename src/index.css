@@ -8,6 +8,11 @@
     scroll-padding-top: 5rem;
   }
 
+  /* Decorative glows extend past their sections; never let them cause sideways scroll. */
+  body {
+    overflow-x: clip;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
