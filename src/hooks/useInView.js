@@ -8,7 +8,8 @@ export function useInView({ rootMargin = '0px 0px -10% 0px' } = {}) {
   useEffect(() => {
     const node = ref.current;
     if (!node || inView) return undefined;
-    if (typeof IntersectionObserver === 'undefined') {
+    const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion || typeof IntersectionObserver === 'undefined') {
       setInView(true);
       return undefined;
     }
