@@ -1,5 +1,6 @@
 import { ChevronDown } from 'lucide-react';
 import { useId, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { cn } from '../../lib/cn.js';
 
 function AccordionItem({ item, open, onToggle }) {
@@ -27,6 +28,11 @@ function AccordionItem({ item, open, onToggle }) {
         className="pb-5 pr-10 text-slate-600"
       >
         <p className="leading-relaxed">{item.answer}</p>
+        {item.guide && (
+          <Link to={`/guides/${item.guide}`} className="mt-3 inline-block text-sm font-medium text-brand-700 hover:underline">
+            Read the full guide →
+          </Link>
+        )}
       </div>
     </div>
   );
