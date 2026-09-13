@@ -4,12 +4,7 @@ import { PageHero } from '../components/layout/PageHero.jsx';
 import { Container } from '../components/ui/Container.jsx';
 import { glossary } from '../data/glossary.js';
 import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
-
-export function filterGlossary(entries, query) {
-  const q = query.trim().toLowerCase();
-  if (!q) return entries;
-  return entries.filter((e) => e.term.toLowerCase().includes(q) || e.definition.toLowerCase().includes(q));
-}
+import { filterGlossary } from '../lib/search.js';
 
 export default function GlossaryPage() {
   useDocumentTitle('Glossary', 'Plain-language definitions of Stellar, P2P trading and Nexlm terms.');
