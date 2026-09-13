@@ -56,6 +56,56 @@ export const faqCategories = [
     ],
   },
   {
+    id: 'wallet',
+    title: 'Deposits & withdrawals',
+    items: [
+      {
+        question: 'Do I need a memo to deposit XLM?',
+        answer:
+          'No. Your Nexlm wallet is a personal Stellar address, so deposits arrive without a memo. Just make sure the sending platform uses the Stellar network.',
+      },
+      {
+        question: 'How long do deposits take?',
+        answer:
+          'Stellar confirms in about five seconds once the sender broadcasts the transaction. Exchanges sometimes hold withdrawals for their own checks before sending.',
+      },
+      {
+        question: 'Why can’t I withdraw my whole balance?',
+        answer:
+          'Stellar requires every account to keep a small minimum balance, and XLM committed to your active sell orders is held back. Cancel an order to free those funds.',
+      },
+      {
+        question: 'What if I withdraw to an exchange without a memo?',
+        answer:
+          'Exchanges that share one address between customers rely on the memo to credit you. Always copy the memo from the exchange’s deposit page; if you forgot it, contact the exchange with the transaction hash.',
+      },
+    ],
+  },
+  {
+    id: 'account',
+    title: 'Account & verification',
+    items: [
+      {
+        question: 'Can I have more than one Nexlm account?',
+        answer: 'No. Each person may hold one account, and each BVN or NIN can only be linked to one account.',
+      },
+      {
+        question: 'My verification failed. What now?',
+        answer:
+          'Enter your names and date of birth exactly as they appear on your BVN or NIN record, or try the other ID type. If your ID is reported as already in use, contact support.',
+      },
+      {
+        question: 'Can I change my display name?',
+        answer:
+          'Display names are tied to your trading reputation, so they can’t be changed in the app. Contact support if your name needs correcting.',
+      },
+      {
+        question: 'I forgot my password.',
+        answer: 'Use “Forgot password?” on the login page. We’ll email a reset link that is valid for one hour.',
+      },
+    ],
+  },
+  {
     id: 'safety',
     title: 'Safety & fees',
     items: [
