@@ -1,6 +1,16 @@
 export const changelog = [
   {
     date: '2026-09-13',
+    title: 'Guides, glossary and payment method tips',
+    tag: 'Website',
+    items: [
+      'Twelve practical guides covering buying, selling, safety, verification and how Stellar escrow works',
+      'Searchable glossary of Stellar and P2P terms',
+      'Per-method tips for bank transfer, OPay, PalmPay, Kuda and Moniepoint',
+    ],
+  },
+  {
+    date: '2026-09-13',
     title: 'Trade reconciliation',
     tag: 'Reliability',
     items: [
