@@ -1,4 +1,5 @@
 import { ArrowRight, ShieldCheck } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { appLinks } from '../../config/site.js';
 import { Button } from '../ui/Button.jsx';
 import { Container } from '../ui/Container.jsx';
@@ -38,6 +39,12 @@ export function Hero() {
           <p className="mt-6 flex items-center gap-2 text-sm text-slate-500">
             <ShieldCheck className="h-4 w-4 text-naira-400" />
             Zero trading fees · Settles in ~5 seconds · Naira never held by Nexlm
+          </p>
+          <p className="mt-3 text-sm text-slate-500">
+            First time trading P2P?{' '}
+            <Link to="/guides/how-to-buy-xlm-with-naira" className="font-medium text-brand-300 hover:text-brand-200">
+              Read the 5-minute guide →
+            </Link>
           </p>
         </div>
 
