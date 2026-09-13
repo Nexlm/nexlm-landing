@@ -34,7 +34,18 @@ export function HowItWorks() {
         />
 
         <div className="mt-10 flex justify-center">
-          <div className="inline-flex rounded-full bg-white p-1 shadow-sm ring-1 ring-slate-200" role="tablist">
+          <div
+            className="inline-flex rounded-full bg-white p-1 shadow-sm ring-1 ring-slate-200"
+            role="tablist"
+            aria-label="Choose buying or selling steps"
+            onKeyDown={(e) => {
+              if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+              e.preventDefault();
+              const next = side === 'buy' ? 'sell' : 'buy';
+              setSide(next);
+              e.currentTarget.querySelector(`[data-tab="${next}"]`)?.focus();
+            }}
+          >
             {[
               { id: 'buy', label: 'Buying XLM' },
               { id: 'sell', label: 'Selling XLM' },
@@ -43,6 +54,8 @@ export function HowItWorks() {
                 key={tab.id}
                 type="button"
                 role="tab"
+                data-tab={tab.id}
+                tabIndex={side === tab.id ? 0 : -1}
                 aria-selected={side === tab.id}
                 onClick={() => setSide(tab.id)}
                 className={cn(
