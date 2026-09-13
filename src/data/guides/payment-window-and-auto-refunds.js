@@ -13,7 +13,7 @@ export default {
     {
       heading: 'When the timer stops',
       body: [
-        'Tapping “I have paid” stops the countdown for good. From then on, the trade cannot be refunded automatically; only the seller releasing (or a dispute review) can close it.',
+        'Tapping “I have paid” stops the countdown for good. From then on, the trade cannot be refunded automatically; it closes when the seller releases the XLM. If the seller is unresponsive, contact support with the trade ID — in-app disputes are coming in Phase 2.',
       ],
       callout: { tone: 'warning', text: 'Tap “I have paid” only after your transfer has gone through.' },
     },
