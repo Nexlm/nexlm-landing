@@ -1,5 +1,6 @@
 import { PageHero } from '../components/layout/PageHero.jsx';
 import { Container } from '../components/ui/Container.jsx';
+import { FeeExample } from '../components/widgets/FeeExample.jsx';
 import { feeTable } from '../data/fees.js';
 import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
 
@@ -40,6 +41,8 @@ export default function FeesPage() {
               </tbody>
             </table>
           </div>
+
+          <FeeExample />
 
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             <div className="rounded-3xl bg-slate-50 p-7">
