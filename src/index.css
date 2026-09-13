@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand-400 ring-offset-2 ring-offset-transparent;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display tracking-tight;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.2em] text-brand-600;
+  }
+
+  .prose-legal h2 {
+    @apply mt-10 text-xl font-semibold text-slate-900;
+  }
+
+  .prose-legal p,
+  .prose-legal li {
+    @apply mt-3 leading-relaxed text-slate-600;
+  }
+
+  .prose-legal ul {
+    @apply mt-3 list-disc space-y-1 pl-5;
+  }
+}
+
+@layer utilities {
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-brand-300 via-brand-400 to-naira-400 bg-clip-text text-transparent;
+  }
+}
