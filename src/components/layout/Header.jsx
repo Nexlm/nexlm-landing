@@ -7,6 +7,7 @@ import { cn } from '../../lib/cn.js';
 import { Button } from '../ui/Button.jsx';
 import { Container } from '../ui/Container.jsx';
 import { Logo } from '../ui/Logo.jsx';
+import { AnnouncementBar } from './AnnouncementBar.jsx';
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -14,6 +15,18 @@ export function Header() {
   const location = useLocation();
 
   useEffect(() => setOpen(false), [location.pathname]);
+
+  useEffect(() => {
+    if (!open) return undefined;
+    const onKey = (e) => e.key === 'Escape' && setOpen(false);
+    document.addEventListener('keydown', onKey);
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = previous;
+    };
+  }, [open]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -29,6 +42,7 @@ export function Header() {
         scrolled || open ? 'border-b border-white/10 bg-ink-950/90 backdrop-blur' : 'bg-transparent',
       )}
     >
+      <AnnouncementBar />
       <Container className="flex h-16 items-center justify-between">
         <Logo />
 
