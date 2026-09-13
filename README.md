@@ -83,10 +83,6 @@ Content lives in `src/data/` so copy changes don't require touching components. 
 - **XLM/NGN rate** — CoinGecko simple-price API, cached five minutes in `sessionStorage`. Indicative only.
 - **Network pulse** — latest ledgers from Stellar's public Horizon, refreshed every 15 seconds.
 
-## Live rate
-
-The hero ticker and calculator use CoinGecko's public simple-price API for an **indicative** XLM/NGN rate, cached for five minutes in `sessionStorage`. Actual Nexlm prices are set by traders.
-
 ## Deployment
 
 The site is a static SPA. `vercel.json` adds SPA rewrites, long-lived caching for hashed assets and basic security headers.
