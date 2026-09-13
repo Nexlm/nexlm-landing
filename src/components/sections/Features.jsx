@@ -2,6 +2,7 @@ import { features } from '../../data/features.js';
 import { Container } from '../ui/Container.jsx';
 import { Reveal } from '../ui/Reveal.jsx';
 import { SectionHeading } from '../ui/SectionHeading.jsx';
+import { NetworkPulse } from '../widgets/NetworkPulse.jsx';
 
 export function Features() {
   return (
@@ -12,6 +13,7 @@ export function Features() {
           title="The Stellar-native way to trade XLM in Nigeria"
           description="Not another exchange where XLM is an afterthought. Nexlm is built on Stellar, for XLM, around Nigerian payments."
         />
+        <NetworkPulse className="mt-8 justify-center" />
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {features.map(({ icon: Icon, title, body }, i) => (
             <Reveal key={title} delay={i * 60} className="group rounded-3xl border border-slate-200 p-7 transition-colors hover:border-brand-200 hover:bg-brand-50/40">
