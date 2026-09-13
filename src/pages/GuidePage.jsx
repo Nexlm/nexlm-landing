@@ -1,6 +1,7 @@
 import { ArrowLeft, Clock } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { GuideCard } from '../components/guides/GuideCard.jsx';
+import { ReadingProgress } from '../components/guides/ReadingProgress.jsx';
 import { GuideSection, sectionId } from '../components/guides/GuideSection.jsx';
 import { StructuredData } from '../components/seo/StructuredData.jsx';
 import { Button } from '../components/ui/Button.jsx';
@@ -45,7 +46,8 @@ export default function GuidePage() {
         </Container>
       </section>
 
-      <article className="bg-white py-12">
+      <ReadingProgress targetId="guide-body" />
+      <article id="guide-body" className="bg-white py-12">
         <Container className="grid max-w-5xl gap-12 lg:grid-cols-[1fr_14rem]">
           <div className="min-w-0">
             {guide.sections.map((section) => (
