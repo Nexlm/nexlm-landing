@@ -22,7 +22,10 @@ function Arrow({ label }) {
 /** Visual summary of how XLM and Naira move during a trade. */
 export function EscrowDiagram() {
   return (
-    <figure className="rounded-3xl border border-white/10 bg-ink-900 p-6 sm:p-8">
+    <figure
+      className="rounded-3xl border border-white/10 bg-ink-900 p-6 sm:p-8"
+      aria-label="Escrow flow: the seller funds an escrow account with XLM, the escrow releases the XLM to the buyer on confirmation, and Naira goes directly from buyer to seller."
+    >
       <div className="grid items-stretch gap-3 md:grid-cols-[1fr_auto_1fr_auto_1fr]">
         <Node icon={User} title="Seller" subtitle="Funds a new escrow account" tone="border-white/10 bg-white/5 text-white" />
         <Arrow label="XLM + 2 XLM reserve" />
