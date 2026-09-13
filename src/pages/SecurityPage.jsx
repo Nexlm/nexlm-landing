@@ -1,4 +1,5 @@
 import { ShieldAlert } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { PageHero } from '../components/layout/PageHero.jsx';
 import { Container } from '../components/ui/Container.jsx';
 import { SectionHeading } from '../components/ui/SectionHeading.jsx';
@@ -59,7 +60,18 @@ export default function SecurityPage() {
       </section>
 
       <section className="bg-white py-16">
-        <Container>
+        <Container className="space-y-4">
+          <div className="flex flex-col gap-4 rounded-3xl bg-ink-900 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+            <div>
+              <h2 className="font-sans text-lg font-semibold text-white">Think you&apos;re being scammed?</h2>
+              <p className="mt-1 text-sm text-slate-400">
+                Don&apos;t release, don&apos;t cancel on instruction, and keep chatting in the trade room. Then contact support with your trade ID.
+              </p>
+            </div>
+            <Link to="/contact" className="shrink-0 rounded-full bg-white px-5 py-2.5 text-center text-sm font-semibold text-ink-900 hover:bg-slate-100">
+              Contact support
+            </Link>
+          </div>
           <div className="flex gap-4 rounded-3xl border border-slate-200 p-6">
             <ShieldAlert className="h-6 w-6 shrink-0 text-brand-600" aria-hidden />
             <p className="text-sm text-slate-600">
