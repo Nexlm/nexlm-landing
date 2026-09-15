@@ -13,26 +13,29 @@ const SUGGESTIONS = [
 export default function NotFoundPage() {
   useDocumentTitle('Page not found');
   return (
-    <section className="flex min-h-[80vh] items-center bg-ink-950 pt-16">
-      <Container className="text-center">
-        <p className="font-display text-7xl font-semibold text-gradient">404</p>
-        <h1 className="mt-4 text-3xl font-semibold text-white">This page wandered off-chain</h1>
-        <p className="mt-3 text-slate-400">The link may be broken or the page may have moved.</p>
-        <Button to="/" className="mt-8">
-          Back home
-        </Button>
-        <nav className="mt-10" aria-label="Popular pages">
-          <p className="text-sm text-slate-500">Or try one of these:</p>
-          <ul className="mt-3 flex flex-wrap justify-center gap-2">
-            {SUGGESTIONS.map((s) => (
-              <li key={s.to}>
-                <Link to={s.to} className="rounded-full border border-white/10 px-4 py-2 text-sm text-slate-300 hover:border-white/30 hover:text-white">
-                  {s.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+    <section className="glow-leaf flex min-h-[70vh] items-center py-20">
+      <Container>
+        <p className="eyebrow">Error 404</p>
+        <h1 className="mt-5 max-w-4xl text-6xl font-extrabold leading-[0.92] tracking-tight sm:text-8xl">
+          This page wandered <span className="text-gold">off-chain</span>.
+        </h1>
+        <p className="mt-6 text-lg text-soft">The link may be broken or the page may have moved.</p>
+        <div className="mt-10 flex flex-wrap items-center gap-6">
+          <Button to="/" size="lg">
+            Back home
+          </Button>
+          <nav aria-label="Popular pages">
+            <ul className="flex flex-wrap gap-5 font-mono text-[11px] uppercase tracking-[0.12em]">
+              {SUGGESTIONS.map((s) => (
+                <li key={s.to}>
+                  <Link to={s.to} className="text-moss hover:text-paper">
+                    {s.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
       </Container>
     </section>
   );
