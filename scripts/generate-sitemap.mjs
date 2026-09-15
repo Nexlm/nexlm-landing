@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { guides } from '../src/data/guides/index.js';
 import { staticRoutes } from '../src/data/navigation.js';
 
-const SITE_URL = (process.env.VITE_SITE_URL || 'https://nexlm.app').replace(/\/$/, '');
+const SITE_URL = (process.env.VITE_SITE_URL || 'https://nexlm-landing.vercel.app').replace(/\/$/, '');
 
 const escape = (value) => String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 

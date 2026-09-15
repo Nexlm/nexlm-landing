@@ -15,7 +15,7 @@ describe('structured data', () => {
 
   it('describes guides as articles', () => {
     const schema = articleSchema({ slug: 'what-is-stellar', title: 'What is Stellar?', summary: 'Intro', updated: '2026-09-13' });
-    expect(schema).toMatchObject({ '@type': 'Article', headline: 'What is Stellar?', mainEntityOfPage: 'https://nexlm.app/guides/what-is-stellar' });
+    expect(schema).toMatchObject({ '@type': 'Article', headline: 'What is Stellar?', mainEntityOfPage: 'https://nexlm-landing.vercel.app/guides/what-is-stellar' });
   });
 
   it('builds absolute breadcrumb URLs with positions', () => {
@@ -23,6 +23,6 @@ describe('structured data', () => {
       { name: 'Home', path: '/' },
       { name: 'FAQ', path: '/faq' },
     ]);
-    expect(schema.itemListElement[1]).toMatchObject({ position: 2, item: 'https://nexlm.app/faq' });
+    expect(schema.itemListElement[1]).toMatchObject({ position: 2, item: 'https://nexlm-landing.vercel.app/faq' });
   });
 });
