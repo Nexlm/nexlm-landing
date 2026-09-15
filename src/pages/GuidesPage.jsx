@@ -18,8 +18,8 @@ export default function GuidesPage() {
 
   return (
     <>
-      <PageHero eyebrow="Guides" title="Learn to trade XLM safely" description="Short, practical guides for your first trade and beyond." />
-      <section className="bg-slate-50 py-16">
+      <PageHero eyebrow="Guides" title="Learn to trade XLM safely." description="Short, practical guides for your first trade and beyond." />
+      <section className="py-16">
         <Container>
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex flex-wrap gap-2" role="tablist" aria-label="Guide categories">
@@ -31,8 +31,8 @@ export default function GuidesPage() {
                   aria-selected={category === c}
                   onClick={() => setCategory(c)}
                   className={cn(
-                    'rounded-full px-4 py-2 text-sm font-medium transition-colors',
-                    category === c ? 'bg-ink-900 text-white' : 'bg-white text-slate-600 ring-1 ring-slate-200 hover:text-slate-900',
+                    'rounded-full border px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.12em] transition-colors',
+                    category === c ? 'border-gold bg-gold/10 text-gold' : 'border-line text-moss hover:text-paper',
                   )}
                 >
                   {c}
@@ -40,24 +40,25 @@ export default function GuidesPage() {
               ))}
             </div>
             <div className="relative lg:w-80">
-              <Search className="pointer-events-none absolute left-4 top-3 h-4 w-4 text-slate-400" aria-hidden />
+              <Search className="pointer-events-none absolute left-4 top-3.5 h-4 w-4 text-moss" aria-hidden />
               <input
+                id="guide-search"
                 type="search"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search guides"
                 aria-label="Search guides"
-                className="h-10 w-full rounded-full border border-slate-300 bg-white pl-10 pr-4 text-sm outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20"
+                className="field pl-10"
               />
             </div>
           </div>
 
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {visible.map((guide) => (
-              <GuideCard key={guide.slug} guide={guide} />
+          <div className="mt-10 grid border-t border-line md:grid-cols-2 lg:grid-cols-3">
+            {visible.map((guide, i) => (
+              <GuideCard key={guide.slug} guide={guide} divided={i % 3 !== 0} />
             ))}
           </div>
-          {visible.length === 0 && <p className="mt-10 text-center text-slate-500">No guides match your search.</p>}
+          {visible.length === 0 && <p className="mt-10 text-soft">No guides match your search.</p>}
         </Container>
       </section>
     </>
