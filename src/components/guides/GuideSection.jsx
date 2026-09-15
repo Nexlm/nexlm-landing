@@ -15,15 +15,15 @@ export function GuideSection({ section }) {
   const warning = callout?.tone === 'warning';
 
   return (
-    <section id={sectionId(section.heading)} className="scroll-mt-28">
-      <h2 className="mt-12 text-2xl font-semibold text-slate-900">{section.heading}</h2>
+    <section id={sectionId(section.heading)} className="scroll-mt-28 border-t border-line pt-8 first:border-t-0 first:pt-0 [&:not(:first-child)]:mt-12">
+      <h2 className="text-3xl font-bold tracking-tight text-paper">{section.heading}</h2>
       {section.body?.map((paragraph) => (
-        <p key={paragraph} className="mt-4 leading-relaxed text-slate-700">
+        <p key={paragraph} className="mt-4 text-lg leading-relaxed text-soft">
           {paragraph}
         </p>
       ))}
       {section.list && (
-        <List className={cn('mt-4 space-y-2 pl-5 text-slate-700', section.ordered ? 'list-decimal' : 'list-disc')}>
+        <List className={cn('mt-5 space-y-3 pl-5 text-soft marker:text-gold', section.ordered ? 'list-decimal marker:font-mono' : 'list-disc')}>
           {section.list.map((item) => (
             <li key={item} className="pl-1 leading-relaxed">
               {item}
@@ -32,14 +32,9 @@ export function GuideSection({ section }) {
         </List>
       )}
       {callout && (
-        <div
-          className={cn(
-            'mt-5 flex gap-3 rounded-2xl border p-4 text-sm',
-            warning ? 'border-amber-200 bg-amber-50 text-amber-900' : 'border-sky-200 bg-sky-50 text-sky-900',
-          )}
-        >
-          {warning ? <TriangleAlert className="h-5 w-5 shrink-0" aria-hidden /> : <Info className="h-5 w-5 shrink-0" aria-hidden />}
-          <p>{callout.text}</p>
+        <div className={cn('mt-6 flex gap-3 border-l-2 p-4 text-sm', warning ? 'border-gold bg-gold/[0.06]' : 'border-frost bg-frost/[0.06]')}>
+          {warning ? <TriangleAlert className="h-5 w-5 shrink-0 text-gold" aria-hidden /> : <Info className="h-5 w-5 shrink-0 text-frost" aria-hidden />}
+          <p className="text-paper">{callout.text}</p>
         </div>
       )}
     </section>
