@@ -25,18 +25,19 @@ export function AnnouncementBar() {
   }
 
   return (
-    <div className="relative z-[55] bg-gradient-to-r from-brand-600 to-naira-600 px-10 py-2 text-center text-sm font-medium text-white">
-      Early access is open on Stellar testnet —{' '}
-      <a href="/#early-access" className="underline underline-offset-2">
+    <div className="relative border-b border-line px-10 py-2 text-center font-mono text-[11px] uppercase tracking-[0.12em] text-soft">
+      <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-mint align-middle shadow-[0_0_0_3px_rgba(63,208,138,0.18)]" />
+      Early access is live on Stellar testnet ·{' '}
+      <a href="/#early-access" className="text-gold hover:underline">
         join the waitlist
       </a>
       <button
         type="button"
         onClick={dismiss}
-        className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 hover:bg-white/15"
+        className="absolute right-3 top-1/2 -translate-y-1/2 rounded p-1 text-moss hover:text-paper"
         aria-label="Dismiss announcement"
       >
-        <X className="h-4 w-4" />
+        <X className="h-3.5 w-3.5" />
       </button>
     </div>
   );
