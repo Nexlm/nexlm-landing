@@ -8,25 +8,29 @@ export default function ChangelogPage() {
 
   return (
     <>
-      <PageHero eyebrow="Changelog" title="What's new in Nexlm" description="Everything we've shipped, newest first." />
-      <section className="bg-white py-16">
-        <Container className="max-w-3xl">
-          <ol className="relative border-l border-slate-200">
+      <PageHero eyebrow="Changelog" title="What's new in Nexlm." description="Everything we've shipped, newest first." />
+      <section className="py-16">
+        <Container className="max-w-4xl">
+          <ol className="border-t border-line">
             {changelog.map((entry) => (
-              <li key={`${entry.date}-${entry.title}`} className="mb-12 ml-8">
-                <span className="absolute -left-1.5 mt-2 h-3 w-3 rounded-full bg-brand-500 ring-4 ring-brand-100" aria-hidden />
-                <div className="flex flex-wrap items-center gap-3 text-sm">
-                  <time dateTime={entry.date} className="text-slate-500">
-                    {new Date(`${entry.date}T00:00:00Z`).toLocaleDateString('en-NG', { dateStyle: 'long' })}
+              <li key={`${entry.date}-${entry.title}`} className="grid gap-4 border-b border-line py-8 sm:grid-cols-[10rem_1fr] sm:gap-8">
+                <div>
+                  <time dateTime={entry.date} className="num text-sm text-moss">
+                    {entry.date}
                   </time>
-                  <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-700">{entry.tag}</span>
+                  <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.14em] text-mint">{entry.tag}</p>
                 </div>
-                <h2 className="mt-2 text-xl font-semibold text-slate-900">{entry.title}</h2>
-                <ul className="mt-3 list-disc space-y-1.5 pl-5 text-slate-600">
-                  {entry.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
+                <div>
+                  <h2 className="text-2xl font-bold tracking-tight">{entry.title}</h2>
+                  <ul className="mt-4 space-y-2 text-soft">
+                    {entry.items.map((item) => (
+                      <li key={item} className="flex gap-3">
+                        <span className="mt-2.5 h-1 w-3 shrink-0 bg-gold" aria-hidden />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </li>
             ))}
           </ol>
