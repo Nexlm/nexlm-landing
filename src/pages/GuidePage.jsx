@@ -1,8 +1,8 @@
-import { ArrowLeft, Clock } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { Link, useParams } from 'react-router-dom';
 import { GuideCard } from '../components/guides/GuideCard.jsx';
-import { ReadingProgress } from '../components/guides/ReadingProgress.jsx';
 import { GuideSection, sectionId } from '../components/guides/GuideSection.jsx';
+import { ReadingProgress } from '../components/guides/ReadingProgress.jsx';
 import { StructuredData } from '../components/seo/StructuredData.jsx';
 import { Button } from '../components/ui/Button.jsx';
 import { Container } from '../components/ui/Container.jsx';
@@ -31,42 +31,41 @@ export default function GuidePage() {
           { name: guide.title, path: `/guides/${guide.slug}` },
         ])}
       />
+      <ReadingProgress targetId="guide-body" />
 
-      <section className="bg-ink-950 pb-14 pt-32 sm:pt-40">
-        <Container className="max-w-3xl">
-          <Link to="/guides" className="inline-flex items-center gap-1 text-sm text-slate-400 hover:text-white">
-            <ArrowLeft className="h-4 w-4" aria-hidden /> All guides
+      <section className="glow-leaf border-b border-line pb-14 pt-16 sm:pt-24">
+        <Container className="max-w-4xl">
+          <Link to="/guides" className="inline-flex items-center gap-1 font-mono text-[11px] uppercase tracking-[0.12em] text-moss hover:text-paper">
+            <ArrowLeft className="h-3.5 w-3.5" aria-hidden /> All guides
           </Link>
-          <p className="eyebrow mt-6 text-brand-300">{guide.category}</p>
-          <h1 className="mt-3 text-3xl font-semibold text-white sm:text-5xl">{guide.title}</h1>
-          <p className="mt-5 text-lg text-slate-400">{guide.summary}</p>
-          <p className="mt-6 flex items-center gap-3 text-sm text-slate-500">
-            <Clock className="h-4 w-4" aria-hidden /> {guide.readMinutes} min read · Updated {updated}
+          <p className="eyebrow mt-8">
+            {guide.category} · {guide.readMinutes} min read · updated {updated}
           </p>
+          <h1 className="mt-5 text-5xl font-extrabold leading-[0.95] tracking-tight sm:text-6xl">{guide.title}</h1>
+          <p className="mt-6 text-xl leading-relaxed text-soft">{guide.summary}</p>
         </Container>
       </section>
 
-      <ReadingProgress targetId="guide-body" />
-      <article id="guide-body" className="bg-white py-12">
-        <Container className="grid max-w-5xl gap-12 lg:grid-cols-[1fr_14rem]">
-          <div className="min-w-0">
+      <article id="guide-body" className="py-16">
+        <Container className="grid max-w-6xl gap-14 lg:grid-cols-[1fr_15rem]">
+          <div className="min-w-0 max-w-3xl">
             {guide.sections.map((section) => (
               <GuideSection key={section.heading} section={section} />
             ))}
-            <div className="mt-14 rounded-3xl bg-ink-900 p-8">
-              <p className="text-xl font-semibold text-white">Ready to put this into practice?</p>
-              <Button href={appLinks.register} variant="naira" className="mt-5">
+            <div className="mt-16 border-t border-line pt-10">
+              <p className="text-3xl font-extrabold tracking-tight">Ready to put this into practice?</p>
+              <Button href={appLinks.register} className="mt-6" size="lg">
                 Create your Nexlm account
               </Button>
             </div>
           </div>
           <nav className="hidden lg:block" aria-label="On this page">
             <div className="sticky top-28">
-              <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">On this page</p>
-              <ul className="mt-3 space-y-2 border-l border-slate-200 text-sm">
+              <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-moss">On this page</p>
+              <ul className="mt-4 border-l border-line text-sm">
                 {guide.sections.map((s) => (
                   <li key={s.heading}>
-                    <a href={`#${sectionId(s.heading)}`} className="-ml-px block border-l border-transparent pl-4 text-slate-600 hover:border-brand-500 hover:text-slate-900">
+                    <a href={`#${sectionId(s.heading)}`} className="-ml-px block border-l border-transparent py-1.5 pl-4 text-soft hover:border-gold hover:text-paper">
                       {s.heading}
                     </a>
                   </li>
@@ -77,12 +76,12 @@ export default function GuidePage() {
         </Container>
       </article>
 
-      <section className="bg-slate-50 py-16">
+      <section className="border-t border-line bg-ground py-16">
         <Container>
-          <h2 className="text-2xl font-semibold text-slate-900">Keep reading</h2>
-          <div className="mt-8 grid gap-6 md:grid-cols-3">
-            {relatedGuides(guide).map((g) => (
-              <GuideCard key={g.slug} guide={g} />
+          <p className="eyebrow">Keep reading</p>
+          <div className="mt-8 grid border-t border-line md:grid-cols-3">
+            {relatedGuides(guide).map((g, i) => (
+              <GuideCard key={g.slug} guide={g} divided={i > 0} />
             ))}
           </div>
         </Container>
