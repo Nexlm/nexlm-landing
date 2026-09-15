@@ -1,21 +1,20 @@
-import { ArrowRight, Clock } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { cn } from '../../lib/cn.js';
 
-export function GuideCard({ guide }) {
+export function GuideCard({ guide, divided = false }) {
   return (
     <Link
       to={`/guides/${guide.slug}`}
-      className="group flex h-full flex-col rounded-3xl border border-slate-200 bg-white p-6 transition-colors hover:border-brand-300"
+      className={cn('group flex h-full flex-col border-b border-line py-8 pr-6 transition-colors hover:bg-panel/40', divided && 'md:border-l md:border-line md:pl-6')}
     >
-      <div className="flex items-center justify-between text-xs">
-        <span className="rounded-full bg-brand-50 px-2.5 py-1 font-semibold text-brand-700">{guide.category}</span>
-        <span className="inline-flex items-center gap-1 text-slate-500">
-          <Clock className="h-3.5 w-3.5" aria-hidden /> {guide.readMinutes} min read
-        </span>
+      <div className="flex items-center justify-between gap-4 font-mono text-[11px] uppercase tracking-[0.12em]">
+        <span className="text-mint">{guide.category}</span>
+        <span className="text-moss">{guide.readMinutes} min read</span>
       </div>
-      <h3 className="mt-4 font-sans text-lg font-semibold text-slate-900 group-hover:text-brand-700">{guide.title}</h3>
-      <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{guide.summary}</p>
-      <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-brand-700">
+      <h3 className="mt-5 text-2xl font-bold leading-tight tracking-tight text-paper group-hover:text-gold">{guide.title}</h3>
+      <p className="mt-3 flex-1 text-sm leading-relaxed text-soft">{guide.summary}</p>
+      <span className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-mint">
         Read guide <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
       </span>
     </Link>
