@@ -11,7 +11,6 @@ import { AnnouncementBar } from './AnnouncementBar.jsx';
 
 export function Header() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
   useEffect(() => setOpen(false), [location.pathname]);
@@ -28,53 +27,45 @@ export function Header() {
     };
   }, [open]);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
   return (
-    <header
-      className={cn(
-        'fixed inset-x-0 top-0 z-50 transition-colors',
-        scrolled || open ? 'border-b border-white/10 bg-ink-950/90 backdrop-blur' : 'bg-transparent',
-      )}
-    >
+    <header className="sticky top-0 z-50 border-b border-line bg-ink/85 backdrop-blur">
       <AnnouncementBar />
       <Container className="flex h-16 items-center justify-between">
-        <Logo />
+        <div className="flex items-center gap-8">
+          <Logo />
+          <nav className="hidden items-center lg:flex" aria-label="Main">
+            {mainNav.map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                className={({ isActive }) =>
+                  cn(
+                    'relative px-3 py-5 text-sm font-medium transition-colors',
+                    isActive ? 'text-paper after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:bg-gold' : 'text-moss hover:text-paper',
+                  )
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
+          </nav>
+        </div>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
-          {mainNav.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              className={({ isActive }) =>
-                cn('rounded-full px-4 py-2 text-sm font-medium transition-colors', isActive ? 'text-white' : 'text-slate-400 hover:text-white')
-              }
-            >
-              {item.label}
-            </NavLink>
-          ))}
-        </nav>
-
-        <div className="hidden items-center gap-2 lg:flex">
+        <div className="hidden items-center gap-1 lg:flex">
           <Button href={site.docsUrl} variant="ghost" size="sm">
             Docs
           </Button>
           <Button href={appLinks.login} variant="ghost" size="sm">
             Log in
           </Button>
-          <Button href={appLinks.register} size="sm">
+          <Button href={appLinks.register} size="sm" className="ml-2">
             Start trading
           </Button>
         </div>
 
         <button
           type="button"
-          className="rounded-full p-2 text-slate-300 hover:text-white lg:hidden"
+          className="rounded p-2 text-soft hover:text-paper lg:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls="mobile-nav"
@@ -85,14 +76,18 @@ export function Header() {
       </Container>
 
       {open && (
-        <nav id="mobile-nav" className="border-t border-white/10 bg-ink-950 lg:hidden" aria-label="Mobile">
-          <Container className="flex flex-col gap-1 py-4">
+        <nav id="mobile-nav" className="border-t border-line bg-ink lg:hidden" aria-label="Mobile">
+          <Container className="flex flex-col py-2">
             {mainNav.map((item) => (
-              <NavLink key={item.to} to={item.to} className="rounded-lg px-3 py-3 text-base font-medium text-slate-200 hover:bg-white/5">
+              <NavLink
+                key={item.to}
+                to={item.to}
+                className={({ isActive }) => cn('border-b border-line py-4 text-base font-medium', isActive ? 'text-gold' : 'text-soft')}
+              >
                 {item.label}
               </NavLink>
             ))}
-            <div className="mt-3 grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-3 py-4">
               <Button href={appLinks.login} variant="outline">
                 Log in
               </Button>
