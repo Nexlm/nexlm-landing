@@ -1,6 +1,6 @@
 import { formatNgn } from '../../lib/format.js';
 
-const EXAMPLE = { xlm: 100, rate: 520, networkFeePerOp: 0.00001 };
+const EXAMPLE = { xlm: 100, rate: 238, networkFeePerOp: 0.00001 };
 
 // Lock (2 ops) + release (3 ops), each op charged the base fee.
 const LOCK_OPS = 2;
@@ -18,45 +18,48 @@ export function feeBreakdown({ xlm, rate, networkFeePerOp } = EXAMPLE) {
   };
 }
 
+function Side({ title, rows }) {
+  return (
+    <div>
+      <p className="font-display text-2xl font-bold">{title}</p>
+      <dl className="mt-4 border-t border-line">
+        {rows.map(([label, value, accent]) => (
+          <div key={label} className="flex justify-between gap-4 border-b border-line py-3 text-sm">
+            <dt className="text-moss">{label}</dt>
+            <dd className={`num font-semibold ${accent ?? 'text-paper'}`}>{value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  );
+}
+
 /** Worked example of what each side pays and receives on a typical trade. */
 export function FeeExample() {
   const b = feeBreakdown();
   return (
-    <div className="mt-12 rounded-3xl border border-slate-200 p-7">
-      <h2 className="font-sans text-lg font-semibold text-slate-900">
-        Worked example: {EXAMPLE.xlm} XLM at {formatNgn(EXAMPLE.rate)}
+    <div className="mt-16">
+      <p className="eyebrow">Worked example</p>
+      <h2 className="mt-3 text-3xl font-extrabold tracking-tight">
+        {EXAMPLE.xlm} XLM at {formatNgn(EXAMPLE.rate)}
       </h2>
-      <div className="mt-6 grid gap-6 md:grid-cols-2">
-        <dl className="space-y-3 rounded-2xl bg-slate-50 p-5 text-sm">
-          <p className="font-semibold text-slate-900">Buyer</p>
-          <div className="flex justify-between">
-            <dt className="text-slate-500">Pays the seller</dt>
-            <dd className="font-medium">{formatNgn(b.buyerPays)}</dd>
-          </div>
-          <div className="flex justify-between">
-            <dt className="text-slate-500">Receives</dt>
-            <dd className="font-medium">{b.buyerReceives} XLM</dd>
-          </div>
-          <div className="flex justify-between">
-            <dt className="text-slate-500">Nexlm fee</dt>
-            <dd className="font-medium">₦0</dd>
-          </div>
-        </dl>
-        <dl className="space-y-3 rounded-2xl bg-slate-50 p-5 text-sm">
-          <p className="font-semibold text-slate-900">Seller</p>
-          <div className="flex justify-between">
-            <dt className="text-slate-500">Receives</dt>
-            <dd className="font-medium">{formatNgn(b.sellerReceivesNgn)}</dd>
-          </div>
-          <div className="flex justify-between">
-            <dt className="text-slate-500">Stellar network fees</dt>
-            <dd className="font-medium">{b.sellerNetworkFees} XLM</dd>
-          </div>
-          <div className="flex justify-between">
-            <dt className="text-slate-500">Reserve while open (returned)</dt>
-            <dd className="font-medium">{b.reserveSetAside} XLM</dd>
-          </div>
-        </dl>
+      <div className="mt-8 grid gap-10 md:grid-cols-2">
+        <Side
+          title="Buyer"
+          rows={[
+            ['Pays the seller', formatNgn(b.buyerPays)],
+            ['Receives', `${b.buyerReceives} XLM`, 'text-gold'],
+            ['Nexlm fee', '₦0', 'text-mint'],
+          ]}
+        />
+        <Side
+          title="Seller"
+          rows={[
+            ['Receives', formatNgn(b.sellerReceivesNgn)],
+            ['Stellar network fees', `${b.sellerNetworkFees} XLM`],
+            ['Reserve while open (returned)', `${b.reserveSetAside} XLM`, 'text-gold'],
+          ]}
+        />
       </div>
     </div>
   );
