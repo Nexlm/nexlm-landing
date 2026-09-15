@@ -4,6 +4,7 @@ import { Container } from '../components/ui/Container.jsx';
 import { WaitlistForm } from '../components/widgets/WaitlistForm.jsx';
 import { site } from '../config/site.js';
 import { useDocumentTitle } from '../hooks/useDocumentTitle.js';
+import { cn } from '../lib/cn.js';
 
 const CHANNELS = [
   { icon: LifeBuoy, title: 'Trade support', body: 'Problems with a trade, deposit or withdrawal. Include your trade ID.', href: `mailto:${site.supportEmail}`, cta: site.supportEmail },
@@ -17,31 +18,32 @@ export default function ContactPage() {
 
   return (
     <>
-      <PageHero eyebrow="Contact" title="Talk to the Nexlm team" description="Real people, usually within one business day." />
-      <section className="bg-white py-20">
+      <PageHero eyebrow="Contact" title="Talk to the Nexlm team." description="Real people, usually within one business day." />
+      <section className="border-b border-line py-20">
         <Container>
-          <div className="grid gap-6 sm:grid-cols-2">
-            {CHANNELS.map(({ icon: Icon, title, body, href, cta }) => (
+          <div className="grid border-t border-line sm:grid-cols-2">
+            {CHANNELS.map(({ icon: Icon, title, body, href, cta }, i) => (
               <a
                 key={title}
                 href={href}
                 {...(href.startsWith('http') && { target: '_blank', rel: 'noreferrer' })}
-                className="group rounded-3xl border border-slate-200 p-7 transition-colors hover:border-brand-300"
+                className={cn('group border-b border-line py-9 pr-6 transition-colors hover:bg-panel/40', i % 2 === 1 && 'sm:border-l sm:border-line sm:pl-8')}
               >
-                <Icon className="h-7 w-7 text-brand-600" aria-hidden />
-                <h2 className="mt-5 font-sans text-lg font-semibold text-slate-900">{title}</h2>
-                <p className="mt-2 text-sm text-slate-600">{body}</p>
-                <p className="mt-4 text-sm font-semibold text-brand-700 group-hover:underline">{cta}</p>
+                <Icon className="h-6 w-6 text-mint" aria-hidden />
+                <h2 className="mt-5 text-2xl font-bold">{title}</h2>
+                <p className="mt-2 text-soft">{body}</p>
+                <p className="num mt-5 text-sm text-gold group-hover:underline">{cta}</p>
               </a>
             ))}
           </div>
-
-          <div className="mt-16 rounded-3xl bg-ink-900 p-8 sm:p-12">
-            <h2 className="text-2xl font-semibold text-white">Not trading yet?</h2>
-            <p className="mt-2 text-slate-400">Join the early access list and we&apos;ll invite you as we open up.</p>
-            <div className="mt-6">
-              <WaitlistForm />
-            </div>
+        </Container>
+      </section>
+      <section className="glow-leaf py-20">
+        <Container>
+          <p className="eyebrow">Not trading yet?</p>
+          <h2 className="mt-4 text-4xl font-extrabold tracking-tight">Join early access.</h2>
+          <div className="mt-8">
+            <WaitlistForm />
           </div>
         </Container>
       </section>
