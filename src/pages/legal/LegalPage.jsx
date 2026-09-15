@@ -7,10 +7,10 @@ export function LegalPage({ title, description, updated, children }) {
   useDocumentTitle(title, description);
   return (
     <>
-      <PageHero eyebrow="Legal" title={title} description={`Last updated ${updated}`} />
-      <section className="bg-white py-16">
+      <PageHero eyebrow={`Legal · last updated ${updated}`} title={title} />
+      <section className="py-16">
         <Container className="max-w-3xl">
-          <p className="rounded-2xl bg-amber-50 p-4 text-sm text-amber-900">
+          <p className="border-l-2 border-gold bg-gold/[0.06] p-4 text-sm text-paper">
             Draft for early access. This document is pending review by legal counsel and may change before public launch.
           </p>
           <div className="prose-legal mt-8">{children}</div>
