@@ -1,4 +1,3 @@
-import { Check } from 'lucide-react';
 import { PageHero } from '../components/layout/PageHero.jsx';
 import { Container } from '../components/ui/Container.jsx';
 import { paymentMethods } from '../data/paymentMethods.js';
@@ -11,24 +10,29 @@ export default function PaymentMethodsPage() {
     <>
       <PageHero
         eyebrow="Payment methods"
-        title="Pay the way you already do"
+        title="Pay the way you already do."
         description="Naira moves directly between traders through Nigeria's everyday payment rails. Nexlm never holds it."
       />
-      <section className="bg-white py-16">
-        <Container className="grid gap-6 md:grid-cols-2">
-          {paymentMethods.map((method) => (
-            <article key={method.id} className="rounded-3xl border border-slate-200 p-7">
-              <span className={`inline-block rounded-full px-3 py-1 text-sm font-semibold ${method.color}`}>{method.name}</span>
-              <p className="mt-4 text-slate-600">{method.detail}</p>
-              <ul className="mt-5 space-y-2.5">
-                {method.tips.map((tip) => (
-                  <li key={tip} className="flex gap-2.5 text-sm text-slate-700">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-naira-500" aria-hidden /> {tip}
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
+      <section className="py-16">
+        <Container>
+          <ol className="border-t border-line">
+            {paymentMethods.map((method) => (
+              <li key={method.id} className="grid gap-6 border-b border-line py-10 lg:grid-cols-[18rem_1fr]">
+                <div>
+                  <h2 className="text-4xl font-extrabold tracking-tight">{method.name}</h2>
+                  <p className="mt-2 text-soft">{method.detail}</p>
+                </div>
+                <ul className="grid content-start gap-3">
+                  {method.tips.map((tip) => (
+                    <li key={tip} className="flex gap-3 text-paper">
+                      <span className="mt-2.5 h-1 w-3 shrink-0 bg-mint" aria-hidden />
+                      {tip}
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ol>
         </Container>
       </section>
     </>
