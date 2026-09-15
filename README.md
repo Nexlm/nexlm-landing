@@ -33,9 +33,9 @@ npm run dev            # http://localhost:5174
 
 | Variable                 | Default                   | Purpose                                                     |
 | ------------------------ | ------------------------- | ----------------------------------------------------------- |
-| `VITE_SITE_URL`          | `https://nexlm.app`       | Canonical site URL                                          |
-| `VITE_APP_URL`           | `https://app.nexlm.app`   | Where “Start trading” and “Log in” buttons go               |
-| `VITE_DOCS_URL`          | `https://docs.nexlm.app`  | Documentation link                                          |
+| `VITE_SITE_URL`          | `https://nexlm-landing.vercel.app`| Canonical site URL                                          |
+| `VITE_APP_URL`           | `https://nexlm-client.vercel.app`| Where “Start trading” and “Log in” buttons go               |
+| `VITE_DOCS_URL`          | `https://nexlm-docs.vercel.app`| Documentation link                                          |
 | `VITE_WAITLIST_ENDPOINT` | _(empty)_                 | POST endpoint for the waitlist; falls back to a mailto link |
 
 ## Project structure
