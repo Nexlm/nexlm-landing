@@ -4,7 +4,7 @@ import { cn } from '../../lib/cn.js';
 import { joinWaitlist, validateWaitlist, WAITLIST_ROLES } from '../../lib/waitlist.js';
 import { Button } from '../ui/Button.jsx';
 
-export function WaitlistForm({ dark = true }) {
+export function WaitlistForm() {
   const [form, setForm] = useState({ email: '', role: 'buyer' });
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('idle');
@@ -29,7 +29,7 @@ export function WaitlistForm({ dark = true }) {
 
   if (status === 'done') {
     return (
-      <p className={cn('flex items-center gap-2 text-base font-medium', dark ? 'text-naira-300' : 'text-naira-600')} role="status">
+      <p className="flex items-center gap-2 text-base font-medium text-mint" role="status">
         <CheckCircle2 className="h-5 w-5" /> You&apos;re on the list. We&apos;ll email you when your invite is ready.
       </p>
     );
@@ -46,19 +46,15 @@ export function WaitlistForm({ dark = true }) {
             aria-checked={form.role === r.value}
             onClick={() => setForm((f) => ({ ...f, role: r.value }))}
             className={cn(
-              'rounded-full border px-3 py-1.5 text-xs font-medium transition-colors',
-              form.role === r.value
-                ? 'border-naira-400 bg-naira-400/10 text-naira-300'
-                : dark
-                  ? 'border-white/15 text-slate-400 hover:text-white'
-                  : 'border-slate-300 text-slate-600 hover:bg-slate-50',
+              'rounded-full border px-3 py-1.5 font-mono text-[11px] uppercase tracking-wider transition-colors',
+              form.role === r.value ? 'border-gold bg-gold/10 text-gold' : 'border-line text-moss hover:text-paper',
             )}
           >
             {r.label}
           </button>
         ))}
       </div>
-      <div className="mt-3 flex flex-col gap-3 sm:flex-row">
+      <div className="mt-4 flex flex-col gap-3 sm:flex-row">
         <label htmlFor="waitlist-email" className="sr-only">
           Email address
         </label>
@@ -71,18 +67,14 @@ export function WaitlistForm({ dark = true }) {
           onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
           aria-invalid={Boolean(errors.email)}
           aria-describedby={errors.email ? 'waitlist-error' : undefined}
-          className={cn(
-            'h-12 flex-1 rounded-full border px-5 text-sm outline-none focus:ring-2 focus:ring-brand-400/40',
-            dark ? 'border-white/15 bg-white/5 text-white placeholder:text-slate-500' : 'border-slate-300 bg-white text-slate-900',
-            errors.email && 'border-rose-400',
-          )}
+          className={cn('field h-12 flex-1', errors.email && 'border-ember')}
         />
-        <Button type="submit" variant="naira" size="lg" disabled={status === 'loading'}>
+        <Button type="submit" variant="gold" size="lg" disabled={status === 'loading'}>
           {status === 'loading' ? 'Joining…' : 'Get early access'}
         </Button>
       </div>
       {(errors.email || status === 'error') && (
-        <p id="waitlist-error" className="mt-2 text-sm text-rose-400">
+        <p id="waitlist-error" className="mt-2 text-sm text-ember">
           {errors.email ?? message}
         </p>
       )}
