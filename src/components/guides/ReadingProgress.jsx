@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-/** Thin bar under the header showing how far through a guide the reader is. */
+/** Thin gold bar at the top of the viewport showing how far through a guide the reader is. */
 export function ReadingProgress({ targetId }) {
   const [progress, setProgress] = useState(0);
 
@@ -10,8 +10,7 @@ export function ReadingProgress({ targetId }) {
       if (!target) return;
       const { top, height } = target.getBoundingClientRect();
       const scrollable = height - window.innerHeight;
-      const value = scrollable <= 0 ? 1 : Math.min(1, Math.max(0, -top / scrollable));
-      setProgress(value);
+      setProgress(scrollable <= 0 ? 1 : Math.min(1, Math.max(0, -top / scrollable)));
     };
     update();
     window.addEventListener('scroll', update, { passive: true });
@@ -23,8 +22,8 @@ export function ReadingProgress({ targetId }) {
   }, [targetId]);
 
   return (
-    <div className="fixed inset-x-0 top-0 z-[60] h-1 bg-transparent" aria-hidden>
-      <div className="h-full origin-left bg-gradient-to-r from-brand-400 to-naira-400" style={{ transform: `scaleX(${progress})` }} />
+    <div className="fixed inset-x-0 top-0 z-[60] h-0.5" aria-hidden>
+      <div className="h-full origin-left bg-gold" style={{ transform: `scaleX(${progress})` }} />
     </div>
   );
 }
