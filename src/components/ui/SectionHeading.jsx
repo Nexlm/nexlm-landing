@@ -1,15 +1,11 @@
 import { cn } from '../../lib/cn.js';
 
-export function SectionHeading({ eyebrow, title, description, align = 'center', dark = false, className }) {
+export function SectionHeading({ eyebrow, title, description, align = 'left', className }) {
   return (
-    <div className={cn('max-w-2xl', align === 'center' && 'mx-auto text-center', className)}>
-      {eyebrow && <p className={cn('eyebrow', dark && 'text-brand-300')}>{eyebrow}</p>}
-      <h2 className={cn('mt-3 text-3xl font-semibold sm:text-4xl', dark ? 'text-white' : 'text-slate-900')}>{title}</h2>
-      {description && (
-        <p className={cn('mt-4 text-base leading-relaxed sm:text-lg', dark ? 'text-slate-400' : 'text-slate-600')}>
-          {description}
-        </p>
-      )}
+    <div className={cn('max-w-3xl', align === 'center' && 'mx-auto text-center', className)}>
+      {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+      <h2 className="mt-4 text-4xl font-extrabold leading-[0.98] tracking-tight text-paper sm:text-5xl">{title}</h2>
+      {description && <p className="mt-5 max-w-2xl text-lg leading-relaxed text-soft">{description}</p>}
     </div>
   );
 }
