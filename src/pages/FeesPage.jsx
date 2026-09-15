@@ -9,33 +9,41 @@ export default function FeesPage() {
 
   return (
     <>
-      <PageHero eyebrow="Fees" title="Zero trading fees. Really." description="Buying and selling on Nexlm is free. The only cost is Stellar's tiny network fee." />
+      <PageHero
+        eyebrow="Fees"
+        title={
+          <>
+            <span className="text-gold">₦0</span> trading fees. Really.
+          </>
+        }
+        description="Buying and selling on Nexlm is free. The only cost is Stellar's tiny network fee."
+      />
 
-      <section className="bg-white py-20">
+      <section className="py-20">
         <Container>
-          <div className="overflow-x-auto rounded-3xl border border-slate-200">
-            <table className="w-full min-w-[560px] text-left text-sm">
-              <thead className="bg-slate-50 text-slate-500">
-                <tr>
-                  <th scope="col" className="p-5 font-medium">
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[620px] border-t border-line text-left">
+              <thead className="font-mono text-[11px] uppercase tracking-[0.14em] text-moss">
+                <tr className="border-b border-line">
+                  <th scope="col" className="py-4 pr-6 font-semibold">
                     What
                   </th>
-                  <th scope="col" className="p-5 font-medium">
+                  <th scope="col" className="py-4 pr-6 font-semibold">
                     Cost
                   </th>
-                  <th scope="col" className="p-5 font-medium">
+                  <th scope="col" className="py-4 font-semibold">
                     Details
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {feeTable.map((row) => (
-                  <tr key={row.item} className="border-t border-slate-100">
-                    <th scope="row" className="p-5 font-medium text-slate-900">
+                  <tr key={row.item} className="border-b border-line">
+                    <th scope="row" className="py-5 pr-6 font-semibold text-paper">
                       {row.item}
                     </th>
-                    <td className="p-5 font-semibold text-slate-900">{row.cost}</td>
-                    <td className="p-5 text-slate-600">{row.note}</td>
+                    <td className={`num py-5 pr-6 font-semibold ${row.cost === 'Free' ? 'text-mint' : 'text-gold'}`}>{row.cost}</td>
+                    <td className="py-5 text-soft">{row.note}</td>
                   </tr>
                 ))}
               </tbody>
@@ -44,17 +52,17 @@ export default function FeesPage() {
 
           <FeeExample />
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            <div className="rounded-3xl bg-slate-50 p-7">
-              <h2 className="font-sans text-lg font-semibold">Why is there a 2 XLM reserve?</h2>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                Stellar requires every account — including a trade&apos;s escrow account — to hold a small minimum balance. The seller funds it when the trade
-                opens, and whatever isn&apos;t spent on network fees is merged back into their wallet when the trade completes or is cancelled.
+          <div className="mt-16 grid border-t border-line md:grid-cols-2">
+            <div className="border-b border-line py-8 md:pr-8">
+              <h2 className="text-2xl font-bold">Why is there a 2 XLM reserve?</h2>
+              <p className="mt-3 leading-relaxed text-soft">
+                Stellar requires every account — including a trade&apos;s escrow account — to hold a small minimum balance. The seller funds it when the trade opens,
+                and whatever isn&apos;t spent on network fees is merged back when the trade closes.
               </p>
             </div>
-            <div className="rounded-3xl bg-slate-50 p-7">
-              <h2 className="font-sans text-lg font-semibold">How will Nexlm make money?</h2>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600">
+            <div className="border-b border-line py-8 md:border-l md:border-line md:pl-8">
+              <h2 className="text-2xl font-bold">How will Nexlm make money?</h2>
+              <p className="mt-3 leading-relaxed text-soft">
                 Core P2P trading stays free. We plan to earn from optional premium features for power traders — never by hiding a margin inside your rate.
               </p>
             </div>
