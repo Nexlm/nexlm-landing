@@ -1,44 +1,71 @@
-import { ArrowRight, Landmark, Lock, User } from 'lucide-react';
+import { useInView } from '../../hooks/useInView.js';
+import { cn } from '../../lib/cn.js';
 
-function Node({ icon: Icon, title, subtitle, tone }) {
+const NODES = [
+  { title: 'Seller', detail: 'Funds amount + 2 XLM', tone: '' },
+  { title: 'Escrow', detail: 'Own key disabled · platform co-signs', tone: 'border-gold/50 text-gold' },
+  { title: 'Buyer', detail: 'Receives XLM in ~5 s', tone: '' },
+];
+
+const OPS = {
+  lock: [
+    ['createAccount', '(escrow, ', 'amount + 2 XLM', ')'],
+    ['setOptions', '(signer: platform, ', 'masterWeight: 0', ')'],
+  ],
+  release: [
+    ['payment', '(buyer, ', 'amount', ')'],
+    ['accountMerge', '(→ seller)', '', '  // reserve returned'],
+  ],
+};
+
+function OpLine({ op }) {
+  const [name, args, value, tail] = op;
   return (
-    <div className={`flex flex-col items-center rounded-2xl border p-4 text-center ${tone}`}>
-      <Icon className="h-6 w-6" aria-hidden />
-      <p className="mt-2 font-semibold">{title}</p>
-      <p className="mt-1 text-xs opacity-80">{subtitle}</p>
-    </div>
+    <code className="block whitespace-nowrap font-mono text-[13px] leading-8 text-paper">
+      <span className="text-mint">{name}</span>
+      {args}
+      <span className="text-gold">{value}</span>
+      <span className={tail.startsWith('  //') ? 'text-moss' : ''}>{tail}</span>
+    </code>
   );
 }
 
-function Arrow({ label }) {
-  return (
-    <div className="flex flex-col items-center justify-center gap-1 px-1 text-xs text-slate-400">
-      <ArrowRight className="h-5 w-5 rotate-90 md:rotate-0" aria-hidden />
-      <span className="text-center">{label}</span>
-    </div>
-  );
-}
-
-/** Visual summary of how XLM and Naira move during a trade. */
+/** How XLM moves during a trade — the same model shown in the pitch reel. */
 export function EscrowDiagram() {
+  const [ref, inView] = useInView();
+
   return (
-    <figure
-      className="rounded-3xl border border-white/10 bg-ink-900 p-6 sm:p-8"
-      aria-label="Escrow flow: the seller funds an escrow account with XLM, the escrow releases the XLM to the buyer on confirmation, and Naira goes directly from buyer to seller."
-    >
-      <div className="grid items-stretch gap-3 md:grid-cols-[1fr_auto_1fr_auto_1fr]">
-        <Node icon={User} title="Seller" subtitle="Funds a new escrow account" tone="border-white/10 bg-white/5 text-white" />
-        <Arrow label="XLM + 2 XLM reserve" />
-        <Node icon={Lock} title="Escrow account" subtitle="Seller key disabled · platform co-signs" tone="border-brand-400/40 bg-brand-500/10 text-brand-100" />
-        <Arrow label="Released on confirmation" />
-        <Node icon={User} title="Buyer" subtitle="Receives XLM in ~5 seconds" tone="border-naira-400/40 bg-naira-500/10 text-naira-100" />
+    <figure ref={ref} aria-label="Escrow flow: the seller funds an escrow account, the platform can only release it to the buyer or refund the seller, and Naira goes directly from buyer to seller.">
+      <div className="relative grid gap-4 sm:grid-cols-3 sm:gap-10">
+        <div className="absolute left-[16%] right-[16%] top-1/2 hidden h-px bg-[repeating-linear-gradient(90deg,#7b8a80_0_8px,transparent_8px_16px)] opacity-60 sm:block" aria-hidden />
+        <span
+          className={cn(
+            'absolute top-1/2 hidden h-6 w-6 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_35%_35%,#ffe7a0,#f3c44b_55%,#b98a1c)] shadow-[0_0_24px_rgba(243,196,75,0.55)] transition-[left] duration-[2400ms] ease-in-out sm:block',
+            inView ? 'left-[82%]' : 'left-[14%]',
+          )}
+          aria-hidden
+        />
+        {NODES.map((node) => (
+          <div key={node.title} className={cn('relative z-10 rounded border border-line bg-panel p-5', node.tone)}>
+            <p className="font-display text-2xl font-bold">{node.title}</p>
+            <p className="mt-1 font-mono text-[11px] text-moss">{node.detail}</p>
+          </div>
+        ))}
       </div>
-      <div className="mt-6 flex items-center justify-center gap-2 rounded-2xl border border-dashed border-white/15 p-3 text-sm text-slate-300">
-        <Landmark className="h-4 w-4" aria-hidden />
-        Naira goes directly from buyer to seller — never through Nexlm
+
+      <div className="mt-8 grid gap-6 overflow-x-auto sm:grid-cols-2">
+        <div>
+          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-moss">Lock · one atomic transaction</p>
+          <div className="mt-2">{OPS.lock.map((op) => <OpLine key={op[0]} op={op} />)}</div>
+        </div>
+        <div>
+          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-moss">Release · after the Naira lands</p>
+          <div className="mt-2">{OPS.release.map((op) => <OpLine key={op[0]} op={op} />)}</div>
+        </div>
       </div>
-      <figcaption className="mt-4 text-center text-xs text-slate-500">
-        If the buyer doesn&apos;t pay in time, the escrow merges back into the seller&apos;s wallet automatically.
+
+      <figcaption className="mt-6 border-t border-line pt-4 text-sm text-soft">
+        Naira goes directly from buyer to seller — never through Nexlm. If the buyer doesn&apos;t pay in 15 minutes, the escrow merges back to the seller.
       </figcaption>
     </figure>
   );
