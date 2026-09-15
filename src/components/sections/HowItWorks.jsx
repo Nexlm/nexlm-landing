@@ -7,14 +7,17 @@ import { SectionHeading } from '../ui/SectionHeading.jsx';
 
 export function StepList({ steps }) {
   return (
-    <ol className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+    <ol className="grid border-t border-line md:grid-cols-2 lg:grid-cols-4">
       {steps.map((step, i) => (
-        <Reveal as="li" key={step.title} delay={i * 80} className="relative rounded-3xl border border-slate-200 bg-white p-6">
-          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-50 font-display text-lg font-semibold text-brand-600">
-            {i + 1}
-          </span>
-          <h3 className="mt-5 text-lg font-semibold text-slate-900">{step.title}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-slate-600">{step.body}</p>
+        <Reveal
+          as="li"
+          key={step.title}
+          delay={i * 80}
+          className={cn('border-b border-line py-8 pr-6', i > 0 && 'lg:border-l lg:border-line lg:pl-6', i % 2 === 1 && 'md:border-l md:pl-6 lg:pl-6')}
+        >
+          <span className="num text-sm font-semibold text-gold">{String(i + 1).padStart(2, '0')}</span>
+          <h3 className="mt-4 text-2xl font-bold leading-tight tracking-tight text-paper">{step.title}</h3>
+          <p className="mt-3 text-sm leading-relaxed text-soft">{step.body}</p>
         </Reveal>
       ))}
     </ol>
@@ -25,17 +28,15 @@ export function HowItWorks() {
   const [side, setSide] = useState('buy');
 
   return (
-    <section id="how-it-works" className="bg-slate-50 py-20 sm:py-28">
+    <section id="how-it-works" className="border-b border-line py-24 sm:py-32">
       <Container>
-        <SectionHeading
-          eyebrow="How it works"
-          title="Four steps, fully protected"
-          description="Whether you're buying or selling, the XLM is in escrow before any Naira moves."
-        />
-
-        <div className="mt-10 flex justify-center">
+        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+          <SectionHeading
+            eyebrow="How it works"
+            title="Four steps. The XLM is locked before any Naira moves."
+          />
           <div
-            className="inline-flex rounded-full bg-white p-1 shadow-sm ring-1 ring-slate-200"
+            className="inline-flex shrink-0 rounded border border-line p-1"
             role="tablist"
             aria-label="Choose buying or selling steps"
             onKeyDown={(e) => {
@@ -59,8 +60,8 @@ export function HowItWorks() {
                 aria-selected={side === tab.id}
                 onClick={() => setSide(tab.id)}
                 className={cn(
-                  'rounded-full px-5 py-2 text-sm font-semibold transition-colors',
-                  side === tab.id ? 'bg-ink-900 text-white' : 'text-slate-500 hover:text-slate-900',
+                  'rounded-[4px] px-5 py-2 text-sm font-semibold transition-colors',
+                  side === tab.id ? (tab.id === 'buy' ? 'bg-leaf text-ink' : 'bg-ember text-ink') : 'text-moss hover:text-paper',
                 )}
               >
                 {tab.label}
@@ -69,7 +70,7 @@ export function HowItWorks() {
           </div>
         </div>
 
-        <div className="mt-12">
+        <div className="mt-14">
           <StepList steps={side === 'buy' ? buySteps : sellSteps} />
         </div>
       </Container>
