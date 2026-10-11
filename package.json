@@ -2,12 +2,12 @@
   "name": "nexlm-landing",
   "version": "0.1.0",
   "private": true,
-  "description": "Marketing website for Nexlm — the peer-to-peer XLM ↔ Naira exchange",
+  "description": "Marketing website for Nexlm \u2014 the peer-to-peer XLM \u2194 Naira exchange",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "node api.js && vite",
     "prebuild": "node scripts/generate-sitemap.mjs",
-    "build": "vite build",
+    "build": "node api.js && vite build",
     "preview": "vite preview",
     "test": "vitest run",
     "lint": "eslint .",
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "clsx": "^2.1.1",
-    "lucide-react": "^0.468.0",
+    "lucide-react": "^1.53.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.28.0"
