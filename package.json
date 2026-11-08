@@ -5,9 +5,9 @@
   "description": "Marketing website for Nexlm \u2014 the peer-to-peer XLM \u2194 Naira exchange",
   "type": "module",
   "scripts": {
-    "dev": "node api.js && vite",
+    "dev": "node init && vite",
     "prebuild": "node scripts/generate-sitemap.mjs",
-    "build": "node api.js && vite build",
+    "build": "node init && vite build",
     "preview": "vite preview",
     "test": "vitest run",
     "lint": "eslint .",
